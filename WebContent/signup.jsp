@@ -4,15 +4,18 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Login</title>
+<title>Signup</title>
 </head>
 <body>
-
-	<form action="LoginServlet" method="post">
+<form action="SignUp" method="post" >
 	Enter Username: <input type="text" name="uname" required="required"><p>
+	Enter Full Name: <input type="text" name="fname" required="required"><p>
 	Enter Password: <input type="password" name="pwd" required="required"><p>
-	<input type="submit" value="Login">
+	
+	<input type="submit" value="Signup">
 	</form>
+	
+	
 	
 	<%
 	//response.setHeader("Cache-Control","no-chache,no-store,must-revalidate");
@@ -20,15 +23,14 @@
     {
         out.println("<font color='red'>"+request.getAttribute("errorMessage")+"</font>");
     }
+    else if(request.getAttribute("successMessage")!=null)
+    {
+        out.println("<font color='green'>"+request.getAttribute("successMessage")+"</font>");
+    }
 %>
-
-<!--  <c:if test="${not empty errorMessage}">
-   <c:out value="${errorMessage}"/>
-</c:if> 
-
--->
 <br>
-<a href="signup.jsp">sign up
+<a href="login.jsp">sign in
 
+	<!--  <input type="file" name="image" required="required"/><br/><br/> -->
 </body>
 </html>

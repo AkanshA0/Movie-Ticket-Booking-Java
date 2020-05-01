@@ -23,6 +23,7 @@ public class MysqlLogin {
 	 }catch(Exception e){System.out.println(e);}
 	 
 }
+
 	 public boolean checkLogin(String name,String pass){
 		boolean res=false;
 		try{
@@ -40,4 +41,25 @@ public class MysqlLogin {
 	 
 	return res;
 } 
+	 
+	 public boolean saveUser(String name,String fname,String pass){
+		 
+		 boolean res=false;
+			try{
+			 pstmt=con.prepareStatement("insert into users values(?,?,?);");
+			 pstmt.setString(1,name);
+			 pstmt.setString(2,pass);
+			 pstmt.setString(3,fname);
+			 pstmt.executeUpdate();
+			
+				 res= true;
+			 
+			
+		 }catch(Exception e){
+			 System.out.println(e);
+			 res=false;
+		 }
+		 
+		return res;
+	 }
 }
