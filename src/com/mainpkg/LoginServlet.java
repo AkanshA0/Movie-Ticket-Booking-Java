@@ -24,6 +24,7 @@ public class LoginServlet extends HttpServlet {
 		if(myLoginObj.checkLogin(name, pass)){
 			HttpSession session=request.getSession();
 			session.setAttribute("username", name);
+			
 			RequestDispatcher dispatcher = request.getRequestDispatcher("userMain.jsp");
 		    dispatcher.forward( request, response);
 		}

@@ -17,10 +17,6 @@ import javax.servlet.http.HttpServletResponse;
 public class SignUp extends HttpServlet {
 	
 	MysqlLogin myLoginObj=new MysqlLogin();
-    public SignUp() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String name=request.getParameter("uname");

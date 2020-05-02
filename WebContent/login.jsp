@@ -29,6 +29,7 @@
 -->
 <br>
 <a href="signup.jsp">sign up
+<br>
 <a href="movieupload.jsp">Image
 </body>
 </html>

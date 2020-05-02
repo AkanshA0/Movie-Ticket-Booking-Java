@@ -8,8 +8,22 @@
 </head>
 <body>
 <h1>Image</h1>
+<%@ page import="com.mainpkg.MysqlLogin,java.util.List"%>
 <% 
-out.print("<tr><td><img src='./DisplayImage?imgid=2' width='100px' heigh='100px'/></td>   <td><img src='./DisplayImage?imgid=1' width='100px' heigh='100px'/></td></tr>");
+MysqlLogin myLoginObj=new MysqlLogin();
+List<String> idList=myLoginObj.getImageId();
+out.print("<table><tr>");
+for(String l : idList){
+	
+//out.print("   <td><img src='./DisplayImage?imgid="+l+"' width='400px' heigh=400px'/></td>  ");
+out.print("&emsp;<td><tr><td><img src='./DisplayImage?imgid="+l+"' width='400px' heigh='400px'/></td></tr><tr><td><a href='movieSelect.jsp?mid="+l+"'>click here</td></tr></td>");
+
+}
+out.print("</tr></table>");
 %>
+
+
+	
+	
 </body>
 </html>

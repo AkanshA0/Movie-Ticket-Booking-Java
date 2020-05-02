@@ -17,15 +17,15 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/ImgUpload")
 public class ImgUpload extends HttpServlet {
-
+	MysqlLogin myLoginObj=new MysqlLogin();
+	
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String img=request.getParameter("image");
 		FileInputStream fis=new FileInputStream(new File(img));
 		
 		try{
-			 Class.forName("com.mysql.jdbc.Driver");
-			 Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/MovieJava","root","root");
-			 PreparedStatement pstmt=con.prepareStatement("insert into data values(?,?);");
+			
+			 PreparedStatement pstmt=myLoginObj.con.prepareStatement("insert into data values(?,?);");
 			 pstmt.setString(1, "2");
 			 pstmt.setBinaryStream(2, fis);
 			 int n=pstmt.executeUpdate();

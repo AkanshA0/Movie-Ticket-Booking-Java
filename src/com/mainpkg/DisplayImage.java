@@ -15,6 +15,8 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/DisplayImage")
 public class DisplayImage extends HttpServlet {
+	MysqlLogin myLoginObj=new MysqlLogin();
+	
 	
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		byte[] img=null;
@@ -22,9 +24,8 @@ public class DisplayImage extends HttpServlet {
 		String s=request.getParameter("imgid");
 		String q="select image from data where id=?;";
 		try{
-			 Class.forName("com.mysql.jdbc.Driver");
-			 Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/MovieJava","root","root");
-			 PreparedStatement pstmt=con.prepareStatement(q);
+			 
+			 PreparedStatement pstmt=myLoginObj.con.prepareStatement(q);
 			 pstmt.setString(1, s);
 			 ResultSet rs=pstmt.executeQuery();
 			 sos=response.getOutputStream();

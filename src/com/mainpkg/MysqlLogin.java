@@ -1,19 +1,29 @@
 package com.mainpkg;
 
 import java.sql.Connection;
+
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MysqlLogin {
 	
-	 Connection con=null;
+	public static Connection con=null;
 	 Statement stmt=null;
 	 PreparedStatement pstmt=null;
 	 ResultSet rs =null;
 	 
-	 MysqlLogin()	
+	 public MysqlLogin() {
+			
+			if(con==null){
+				connect();
+			}
+		}
+	 
+	 public void connect()	
 	 {	
 	 try{
 		 Class.forName("com.mysql.jdbc.Driver");
@@ -62,4 +72,25 @@ public class MysqlLogin {
 		 
 		return res;
 	 }
+	 
+	 public List<String> getImageId(){
+		 List<String> list = new ArrayList<String>();  
+		 
+		 try{
+			 pstmt=con.prepareStatement("select id from data");
+			 rs=pstmt.executeQuery();
+			 if (rs.first()){
+				do{
+					list.add(rs.getString(1));
+				}while(rs.next());
+			 }
+			
+		 }catch(Exception e){
+			 System.out.println(e);
+		 }
+
+		 
+		 return list;
+	 }
+	 
 }
