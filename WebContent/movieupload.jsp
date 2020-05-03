@@ -8,6 +8,7 @@
 </head>
 <body>
 <form action="./ImgUpload" method="post">
+Enter movie name: <input type="text" name="mname" required="required"><p>
 <tr><td></td>Image<td><input type="file" name="image"></td></tr>
 <tr><td colspan=2><input type="submit" value="Submit"></td></tr>
 </form>

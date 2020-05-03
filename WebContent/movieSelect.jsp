@@ -11,20 +11,31 @@
 <%
 String movieId=request.getParameter("mid");
 //out.print(movieId);
+int n;
+String s="";
+if(request.getAttribute("numberOfSeats")==null)
+{n=0;}
+else{
+	n=Integer.parseInt(request.getAttribute("numberOfSeats").toString());
+	s=request.getAttribute("seatNumber").toString();
+}
 List<String> l=new ArrayList<String>();
 l.add("1");
 l.add("2");
-out.print("<table>");
+out.print("<table style='border:5px double black;'>");
+int seatNo=1;
 for(int i=0;i<5;i++){
 	out.print("<tr>");
 	for(int j=0;j<7;j++){
 		out.print("<td>");
-		if(l.contains(j+"")){
+		if(l.contains(j+"") || s.contains(seatNo+"")){
 			out.print("<button type='submit' disabled='disabled'><img src='E:/luna java EE workspace/JavaProject/WebContent/images/seat1.jpg' width='40px' heigh='40px' id='dagger'/></button>");
+			seatNo++;
 		}
 		else{
 			
-			out.print("<button type='submit' style='background-color:green;'><img src='E:/luna java EE workspace/JavaProject/WebContent/images/seat1.jpg' width='40px' heigh='40px' id='dagger'/></button>");
+			out.print("<a href='./seatSelect?numberOfSeats="+n+"&sno="+seatNo+"&seats="+s+"'><button type='submit' style='background-color:green;' onclick='sampleFunction()'><img src='E:/luna java EE workspace/JavaProject/WebContent/images/seat1.jpg' width='40px' heigh='40px' id='dagger'/></button>");
+			seatNo++;
 		}
 		out.print("</td>");
 		
@@ -32,6 +43,56 @@ for(int i=0;i<5;i++){
 	out.print("</tr>");
 }
 out.print("</table>");
+
 %>
+
+<%! 
+void sampleFunction()
+{
+	System.out.println("heyaa");
+}
+%>
+<h3>Number of seats : ${numberOfSeats}
+<br>
+<h3>Selected Seats : ${seatNumber}
+<!--  
+<style>
+.myClass {
+  color: white;
+  background-color: DodgerBlue;
+  padding: 20px;
+  text-align: center;
+  margin: 10px;
+}
+</style>
+
+
+<button onClick="sampleFunction()">Show content</button>
+<template>
+  <div class="myClass">I like: </div>
+</template>
+
+<script type="text/javascript">
+var myArr = ["Audi", "BMW", "Ford", "Honda", "Jaguar", "Nissan"];
+function sampleFunction()
+{
+	 var temp, item, a, i;
+	  //get the template element:
+	  temp = document.getElementsByTagName("template")[0];
+	  //get the DIV element from the template:
+	  item = temp.content.querySelector("div");
+	  //for each item in the array:
+	  for (i = 0; i < myArr.length; i++) {
+	    //Create a new node, based on the template:
+	    a = document.importNode(item, true);
+	    //Add data from the array:
+	    a.textContent += myArr[i];
+	    //append the new node wherever you like:
+	    document.body.appendChild(a);
+	  }
+	//System.out.println("heyaa");
+}
+</script>
+-->
 </body>
 </html>

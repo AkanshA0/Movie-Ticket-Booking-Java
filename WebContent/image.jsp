@@ -13,13 +13,19 @@
 MysqlLogin myLoginObj=new MysqlLogin();
 List<String> idList=myLoginObj.getImageId();
 out.print("<table><tr>");
+int line=0;
 for(String l : idList){
 	
+	if(line%2==0){
+		out.print("<tr>");
+	}
 //out.print("   <td><img src='./DisplayImage?imgid="+l+"' width='400px' heigh=400px'/></td>  ");
-out.print("&emsp;<td><tr><td><img src='./DisplayImage?imgid="+l+"' width='400px' heigh='400px'/></td></tr><tr><td><a href='movieSelect.jsp?mid="+l+"'>click here</td></tr></td>");
-
+//out.print("&emsp;<td><tr><td><figure><img src='./DisplayImage?imgid="+l+"' width='400px' heigh='400px'/><figcaption><a href='movieSelect.jsp?mid="+l+"'></figcaption></figure></td></tr><tr><td><a href='movieSelect.jsp?mid="+l+"'>"+l+"</td></tr></td>");
+out.print("&emsp;<td><figure><img src='./DisplayImage?imgid="+l+"' width='400px' heigh='400px'/><figcaption><br><a href='movieSelect.jsp?mid="+l+"'>"+l+"</figcaption></figure></td>");
+line++;
 }
 out.print("</tr></table>");
+
 %>
 
 

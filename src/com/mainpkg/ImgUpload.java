@@ -3,6 +3,7 @@ package com.mainpkg;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -20,16 +21,21 @@ public class ImgUpload extends HttpServlet {
 	MysqlLogin myLoginObj=new MysqlLogin();
 	
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		PrintWriter out=response.getWriter();
+		String movieName=request.getParameter("mname");
 		String img=request.getParameter("image");
 		FileInputStream fis=new FileInputStream(new File(img));
 		
 		try{
 			
 			 PreparedStatement pstmt=myLoginObj.con.prepareStatement("insert into data values(?,?);");
-			 pstmt.setString(1, "2");
+			 pstmt.setString(1, movieName);
 			 pstmt.setBinaryStream(2, fis);
 			 int n=pstmt.executeUpdate();
 			 System.out.println(n);
+			 if(n>0){
+				 out.print("movie uploaded successfully!");
+			 }
 			
 		 }catch(Exception e){System.out.println(e);}
 	}
