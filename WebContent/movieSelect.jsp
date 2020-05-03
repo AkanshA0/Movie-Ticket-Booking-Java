@@ -11,14 +11,21 @@
 <%
 String movieId=request.getParameter("mid");
 //out.print(movieId);
+List<String> seatList=new ArrayList<String>();
 int n;
 String s="";
 if(request.getAttribute("numberOfSeats")==null)
-{n=0;}
+{n=0;
+seatList.add(s);
+}
 else{
 	n=Integer.parseInt(request.getAttribute("numberOfSeats").toString());
 	s=request.getAttribute("seatNumber").toString();
+	//seatList=(List<String>)request.getAttribute("seatNumber");
+	for(String word: s.split(" "))
+		seatList.add(word);
 }
+
 List<String> l=new ArrayList<String>();
 l.add("1");
 l.add("2");
@@ -28,13 +35,18 @@ for(int i=0;i<5;i++){
 	out.print("<tr>");
 	for(int j=0;j<7;j++){
 		out.print("<td>");
-		if(l.contains(j+"") || s.contains(seatNo+"")){
+		if(l.contains(seatNo+"") || seatList.contains(seatNo+"")){
 			out.print("<button type='submit' disabled='disabled'><img src='E:/luna java EE workspace/JavaProject/WebContent/images/seat1.jpg' width='40px' heigh='40px' id='dagger'/></button>");
 			seatNo++;
 		}
+	/*	else if(seatList.contains(seatNo+"")){
+			System.out.println("dup"+seatNo);
+			out.print("<button type='submit' style='background-color:yellow; disabled='disabled'><img src='E:/luna java EE workspace/JavaProject/WebContent/images/seat1.jpg' width='40px' heigh='40px' id='dagger'/></button>");
+			seatNo++;
+		}*/
 		else{
 			
-			out.print("<a href='./seatSelect?numberOfSeats="+n+"&sno="+seatNo+"&seats="+s+"'><button type='submit' style='background-color:green;' onclick='sampleFunction()'><img src='E:/luna java EE workspace/JavaProject/WebContent/images/seat1.jpg' width='40px' heigh='40px' id='dagger'/></button>");
+			out.print("<a href='./seatSelect?numberOfSeats="+n+"&sno="+seatNo+"&seats="+s+"'><button type='submit' style='background-color:grey;'><img src='E:/luna java EE workspace/JavaProject/WebContent/images/seat1.jpg' width='40px' heigh='40px' id='dagger'/></button>");
 			seatNo++;
 		}
 		out.print("</td>");

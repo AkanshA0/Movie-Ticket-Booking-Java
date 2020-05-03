@@ -1,6 +1,7 @@
 package com.mainpkg;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -22,9 +23,10 @@ public class seatSelect extends HttpServlet {
 		n=Integer.parseInt(request.getParameter("numberOfSeats").toString());
 		
 		}
-		if(request.getParameter("seats")!=""){
+		if(request.getParameter("seats")!=null){
 			//System.out.println("not null");
 			s=request.getParameter("seats").toString()+"  "+s;
+			
 		}
 		n++;
 		
