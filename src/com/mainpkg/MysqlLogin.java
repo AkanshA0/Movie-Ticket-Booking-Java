@@ -115,4 +115,24 @@ public class MysqlLogin {
 		 return list;
 	 }
 	 
+	 public int getMaxTno(){
+		 int tno=0;
+		 try{
+			 pstmt=con.prepareStatement("select max(Tno) from tickets");
+			
+			 rs=pstmt.executeQuery();
+			 if (rs.first()){
+				
+					tno=rs.getInt(1);
+				
+			 }
+			
+		 }catch(Exception e){
+			 System.out.println(e);
+		 }
+
+		 
+		 return tno;
+	 }
+	 
 }
