@@ -9,8 +9,11 @@
 <body>
 <form action="./ImgUpload" method="post">
 Enter movie name: <input type="text" name="mname" required="required"><p>
-<tr><td></td>Image<td><input type="file" name="image"></td></tr>
-<tr><td colspan=2><input type="submit" value="Submit"></td></tr>
+Enter movie cost: <input type="text" name="cost" required="required"><p>
+Enter movie description: <textarea rows = "5" cols = "50" name = "mdesc" required="required"></textarea>
+<br>
+Movie Image<input type="file" name="image" required="required">
+<td colspan=2><input type="submit" value="Submit"></td>
 </form>
 
 <a href="image.jsp">see image

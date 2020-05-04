@@ -20,5 +20,7 @@
     <form action="LogoutServlet">
 	<input type="submit" value="Logout">
 	</form>
+	
+	<a href="image.jsp">movies
 </body>
 </html>

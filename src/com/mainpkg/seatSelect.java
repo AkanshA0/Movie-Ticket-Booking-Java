@@ -23,9 +23,9 @@ public class seatSelect extends HttpServlet {
 		n=Integer.parseInt(request.getParameter("numberOfSeats").toString());
 		
 		}
-		if(request.getParameter("seats")!=null){
+		if(request.getParameter("seats")!=""){
 			//System.out.println("not null");
-			s=request.getParameter("seats").toString()+"  "+s;
+			s=request.getParameter("seats").toString()+","+s;
 			
 		}
 		n++;

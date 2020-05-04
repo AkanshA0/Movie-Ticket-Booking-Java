@@ -23,14 +23,18 @@ public class ImgUpload extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		PrintWriter out=response.getWriter();
 		String movieName=request.getParameter("mname");
+		Double cost=Double.parseDouble(request.getParameter("cost").toString());
+		String mdesc=request.getParameter("mdesc");
 		String img=request.getParameter("image");
 		FileInputStream fis=new FileInputStream(new File(img));
 		
 		try{
 			
-			 PreparedStatement pstmt=myLoginObj.con.prepareStatement("insert into data values(?,?);");
+			 PreparedStatement pstmt=myLoginObj.con.prepareStatement("insert into movies values(?,?,?,?);");
 			 pstmt.setString(1, movieName);
 			 pstmt.setBinaryStream(2, fis);
+			 pstmt.setDouble(3,cost);
+			 pstmt.setString(4, mdesc);
 			 int n=pstmt.executeUpdate();
 			 System.out.println(n);
 			 if(n>0){

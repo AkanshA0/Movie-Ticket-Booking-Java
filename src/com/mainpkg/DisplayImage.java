@@ -22,7 +22,7 @@ public class DisplayImage extends HttpServlet {
 		byte[] img=null;
 		ServletOutputStream sos=null;
 		String s=request.getParameter("imgid");
-		String q="select image from data where id=?;";
+		String q="select image from movies where MovieName=?;";
 		try{
 			 
 			 PreparedStatement pstmt=myLoginObj.con.prepareStatement(q);

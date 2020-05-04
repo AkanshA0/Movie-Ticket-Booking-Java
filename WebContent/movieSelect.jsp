@@ -7,9 +7,21 @@
 <title>Insert title here</title>
 </head>
 <body>
-<%@ page import="java.util.List,java.util.ArrayList"%>
 <%
-String movieId=request.getParameter("mid");
+	response.setHeader("Cache-Control","no-chache,no-store,must-revalidate");
+	if(session.getAttribute("username")==null){
+		
+		response.sendRedirect("login.jsp");
+	}
+%>
+<%@ page import="java.util.List,java.util.ArrayList,com.mainpkg.MysqlLogin"%>
+<%
+
+String movieName=request.getParameter("mName");
+MysqlLogin objmysql=new MysqlLogin();
+List<String> reservedSeatsList=objmysql.getBookedSeats(session.getAttribute("username").toString(),movieName);
+
+
 //out.print(movieId);
 List<String> seatList=new ArrayList<String>();
 int n;
@@ -22,20 +34,21 @@ else{
 	n=Integer.parseInt(request.getAttribute("numberOfSeats").toString());
 	s=request.getAttribute("seatNumber").toString();
 	//seatList=(List<String>)request.getAttribute("seatNumber");
-	for(String word: s.split(" "))
+	for(String word: s.split(","))
 		seatList.add(word);
 }
 
-List<String> l=new ArrayList<String>();
-l.add("1");
-l.add("2");
+//List<String> l=new ArrayList<String>();
+//l.add("1");
+//l.add("2");
+
 out.print("<table style='border:5px double black;'>");
 int seatNo=1;
 for(int i=0;i<5;i++){
 	out.print("<tr>");
 	for(int j=0;j<7;j++){
 		out.print("<td>");
-		if(l.contains(seatNo+"") || seatList.contains(seatNo+"")){
+		if(reservedSeatsList.contains(seatNo+"") || seatList.contains(seatNo+"")){
 			out.print("<button type='submit' disabled='disabled'><img src='E:/luna java EE workspace/JavaProject/WebContent/images/seat1.jpg' width='40px' heigh='40px' id='dagger'/></button>");
 			seatNo++;
 		}

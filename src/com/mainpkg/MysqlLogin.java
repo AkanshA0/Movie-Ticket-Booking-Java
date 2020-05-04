@@ -77,7 +77,29 @@ public class MysqlLogin {
 		 List<String> list = new ArrayList<String>();  
 		 
 		 try{
-			 pstmt=con.prepareStatement("select id from data");
+			 pstmt=con.prepareStatement("select MovieName from movies");
+			 rs=pstmt.executeQuery();
+			 if (rs.first()){
+				do{
+					list.add(rs.getString(1));
+				}while(rs.next());
+			 }
+			
+		 }catch(Exception e){
+			 System.out.println(e);
+		 }
+
+		 
+		 return list;
+	 }
+	 
+	 public List<String> getBookedSeats(String uName,String movieName){
+		 List<String> list = new ArrayList<String>();  
+		 
+		 try{
+			 pstmt=con.prepareStatement("select SeatNo from booked where uname=? and MovieName=?");
+			 pstmt.setString(1, uName);
+			 pstmt.setString(2, movieName);
 			 rs=pstmt.executeQuery();
 			 if (rs.first()){
 				do{
