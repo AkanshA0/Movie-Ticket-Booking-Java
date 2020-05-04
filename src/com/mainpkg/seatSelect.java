@@ -15,8 +15,26 @@ public class seatSelect extends HttpServlet {
 	
 
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-	    String s=request.getParameter("sno");
+		String s=request.getParameter("sno");
+	    int sno=0;
+	    if(s!=""){
+	    sno=Integer.parseInt(s);
+	    }
+	    Double totalCost=Double.parseDouble(request.getParameter("totalCost"));
+	    
+	    if(sno>0 && sno<=14){
+	    	totalCost=totalCost+60;
+	    	
+	    }
+	    else if(sno>14 && sno<=28){
+	    	totalCost=totalCost+40;
+	    	
+	    }
+	    else if(sno>28 && sno<=42){
+	    	totalCost=totalCost+20;
+	    	
+	    }
+	    
 		int n=0;
 		System.out.print(request.getParameter("numberOfSeats")+"  ");
 		if(request.getParameter("numberOfSeats")!=null){
@@ -29,12 +47,14 @@ public class seatSelect extends HttpServlet {
 			
 		}
 		n++;
-		
+		//request.setAttribute("mName",request.getParameter("mName").toString());
+		request.setAttribute("totalCost", totalCost);
 		request.setAttribute("numberOfSeats", n);
 		request.setAttribute("seatNumber", s);
 		System.out.println(n);
 		System.out.println(s);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("movieSelect.jsp");
+		
+		  RequestDispatcher dispatcher = request.getRequestDispatcher("movieSelect.jsp?="+request.getParameter("mName").toString());
 		  dispatcher.forward( request, response);
 	}
 

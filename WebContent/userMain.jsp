@@ -22,5 +22,7 @@
 	</form>
 	
 	<a href="image.jsp">movies
+	<br>
+	<a href="mybookings.jsp">my bookings
 </body>
 </html>

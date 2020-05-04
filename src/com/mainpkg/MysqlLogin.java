@@ -135,4 +135,92 @@ public class MysqlLogin {
 		 return tno;
 	 }
 	 
+	 public String getMovieDesc(String mName){
+		 String d="";
+		 try{
+			 pstmt=con.prepareStatement("select description from movies where MovieName=?");
+			 pstmt.setString(1, mName);
+			 rs=pstmt.executeQuery();
+			 if (rs.first()){
+				
+					d=rs.getString(1);
+				
+			 }
+			
+		 }catch(Exception e){
+			 System.out.println(e);
+		 }
+
+		 
+		 return d;
+	 }
+	 
+	 public double getMovieCost(String mName){
+		 double c=0;
+		 try{
+			 pstmt=con.prepareStatement("select cost from movies where MovieName=?");
+			 pstmt.setString(1, mName);
+			 rs=pstmt.executeQuery();
+			 if (rs.first()){
+				
+					c=rs.getDouble(1);
+				
+			 }
+			
+		 }catch(Exception e){
+			 System.out.println(e);
+		 }
+
+		 
+		 return c;
+	 }
+	 
+	 public int bookTicket(String uname,String mName,int numOfSeats,double cost,String date){
+		
+		 int tno=getMaxTno()+1;
+			try{
+			 pstmt=con.prepareStatement("insert into tickets values(?,?,?,?,?,?);");
+			 pstmt.setInt(1, tno);
+			 pstmt.setString(2,uname);
+			 pstmt.setString(3,mName);
+			 pstmt.setInt(4, numOfSeats);
+			 pstmt.setDouble(5, cost);
+			 pstmt.setString(6,date);
+			 pstmt.executeUpdate();
+			
+			
+			 
+			
+		 }catch(Exception e){
+			 System.out.println(e);
+		
+		 }
+		 
+		return tno;
+	 }
+	 
+	 public void seatsBook(String uname,String mName,int tno,List<String> sList){
+		
+		
+			try{
+			 pstmt=con.prepareStatement("insert into booked values(?,?,?,?);");
+			 
+			 for(String s : sList){
+			 pstmt.setString(1, s);
+			 pstmt.setString(2,mName);
+			 pstmt.setString(3,uname);
+			 pstmt.setInt(4, tno);
+			
+			 pstmt.executeUpdate();
+			 }
+				
+			 
+			
+		 }catch(Exception e){
+			 System.out.println(e);
+			
+		 }
+		 
+		
+	 }
 }

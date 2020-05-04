@@ -32,6 +32,9 @@
 <br>
 
 <a href="login.jsp">sign in
+<p>
+
+<!--  input type="button" onclick="alert('Hello World!')" value="Click Me!" -->
 
 
 
