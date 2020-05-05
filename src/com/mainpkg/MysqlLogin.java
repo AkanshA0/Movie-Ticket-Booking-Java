@@ -12,9 +12,9 @@ import java.util.List;
 public class MysqlLogin {
 	
 	public static Connection con=null;
-	 Statement stmt=null;
-	 PreparedStatement pstmt=null;
-	 ResultSet rs =null;
+	public Statement stmt=null;
+	public PreparedStatement pstmt=null;
+	public ResultSet rs =null;
 	 
 	 public MysqlLogin() {
 			
@@ -51,6 +51,27 @@ public class MysqlLogin {
 	 
 	return res;
 } 
+	
+	 
+	 public boolean checkAdminLogin(String name,String pass){
+			boolean res=false;
+			try{
+			 pstmt=con.prepareStatement("select * from admins where uname=? and password=?;");
+			 pstmt.setString(1,name);
+			 pstmt.setString(2,pass);
+			 rs=pstmt.executeQuery();
+			 if (rs.first()){
+				 res= true;
+			 }
+			
+		 }catch(Exception e){
+			 System.out.println(e);
+		 }
+		 
+		return res;
+	}  
+	 
+	 
 	 
 	 public boolean saveUser(String name,String fname,String pass){
 		 
@@ -213,6 +234,32 @@ public class MysqlLogin {
 			
 			 pstmt.executeUpdate();
 			 }
+				
+			 
+			
+		 }catch(Exception e){
+			 System.out.println(e);
+			
+		 }
+		 
+		
+	 }
+	 
+	 public void removeMovie(String mName){
+			
+			
+			try{
+			 pstmt=con.prepareStatement("delete from booked where MovieName=?"); 
+			 pstmt.setString(1,mName);
+			 pstmt.executeUpdate();
+			 
+			 pstmt=con.prepareStatement("delete from tickets where MovieName=?"); 
+			 pstmt.setString(1,mName);
+			 pstmt.executeUpdate();
+			 
+			 pstmt=con.prepareStatement("delete from movies where MovieName=?"); 
+			 pstmt.setString(1,mName);
+			 pstmt.executeUpdate();
 				
 			 
 			

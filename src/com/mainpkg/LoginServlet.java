@@ -19,8 +19,27 @@ public class LoginServlet extends HttpServlet {
 		String name=request.getParameter("uname");
 		String pass=request.getParameter("pwd");
 		
-		
-		
+		if(request.getParameter("chk")!=null)
+		{
+		if(request.getParameter("chk").equals("admin"))
+		{
+			System.out.print("checked");
+			
+			if(myLoginObj.checkAdminLogin(name, pass)){
+				HttpSession session=request.getSession();
+				session.setAttribute("adminname", name);
+				
+				RequestDispatcher dispatcher = request.getRequestDispatcher("adminMain.jsp");
+			    dispatcher.forward( request, response);
+			}
+			else{
+				request.setAttribute("errorMessage", "Invalid username or password"); 
+				RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
+			    dispatcher.forward( request, response);
+			}
+		}
+		}
+		else{
 		if(myLoginObj.checkLogin(name, pass)){
 			HttpSession session=request.getSession();
 			session.setAttribute("username", name);
@@ -37,5 +56,5 @@ public class LoginServlet extends HttpServlet {
 	}
 
 
-
+	}
 }

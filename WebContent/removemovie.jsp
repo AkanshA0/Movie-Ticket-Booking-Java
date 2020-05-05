@@ -4,32 +4,36 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Bookings</title>
+<title>Insert title here</title>
 </head>
 <body>
 <%
 	//response.setHeader("Cache-Control","no-chache,no-store,must-revalidate");
-	if(session.getAttribute("username")==null){
-		
-		response.sendRedirect("login.jsp");
-	}
+if(session.getAttribute("adminname")==null){
+	
+	response.sendRedirect("login.jsp");
+}
 	
 	
 %>
 <%@ page import="com.mainpkg.MysqlLogin"%>
+<h2>Click on Movie to remove it</h2>
+<p>
+<h3>
 <% 
 MysqlLogin myLoginObj=new MysqlLogin();
-myLoginObj.pstmt=(myLoginObj.con).prepareStatement("select * from tickets where uname=?");
-myLoginObj.pstmt.setString(1,session.getAttribute("username").toString());
+myLoginObj.pstmt=(myLoginObj.con).prepareStatement("select MovieName from movies");
 
 myLoginObj.rs=(myLoginObj.pstmt).executeQuery();
+
 if(myLoginObj.rs.first())
 {
 do{
-	out.print("<a href='displayTicket.jsp?Tno="+myLoginObj.rs.getInt(1)+"&MovieName="+myLoginObj.rs.getString(3)+"&numberOfSeats="+myLoginObj.rs.getInt(4)+"&cost="+myLoginObj.rs.getDouble(5)+"&date="+myLoginObj.rs.getString(6)+"'>"+myLoginObj.rs.getString(3)+"&emsp;("+myLoginObj.rs.getString(6)+")");
-	out.print("<p>");
+	out.print("<a href='./removeMovie?mname="+myLoginObj.rs.getString(1)+"'>"+myLoginObj.rs.getString(1));
+	out.print("<br>");
 }while(myLoginObj.rs.next());	
 }
+
 %>
 </body>
 </html>

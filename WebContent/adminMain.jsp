@@ -2,6 +2,7 @@
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
+<head>
 <%
 	//response.setHeader("Cache-Control","no-chache,no-store,must-revalidate");
 if(session.getAttribute("adminname")==null){
@@ -9,20 +10,19 @@ if(session.getAttribute("adminname")==null){
 	response.sendRedirect("login.jsp");
 }
 %>
-<head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Save movie</title>
+<title>admin</title>
 </head>
+Welcome ${adminname}
+<p>
+<a href="movieupload.jsp"/>Movie Upload
+<p>
+<a href="removemovie.jsp"/>Movie Remove
+<p>
+<form action="LogoutServlet?type=admin" method="post">
+	<input type="submit" value="Logout">
+	</form>
 <body>
-<form action="./ImgUpload" method="post">
-Enter movie name: <input type="text" name="mname" required="required"><p>
-Enter movie cost: <input type="text" name="cost" required="required"><p>
-Enter movie description: <textarea rows = "5" cols = "50" name = "mdesc" required="required"></textarea>
-<br>
-Movie Image<input type="file" name="image" required="required">
-<td colspan=2><input type="submit" value="Submit"></td>
-</form>
-
 
 </body>
 </html>

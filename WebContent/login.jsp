@@ -11,7 +11,9 @@
 	<form action="LoginServlet" method="post">
 	Enter Username: <input type="text" name="uname" required="required"><p>
 	Enter Password: <input type="password" name="pwd" required="required"><p>
+	<input type="checkbox" name="chk" value="admin">Admin<p>
 	<input type="submit" value="Login">
+	
 	</form>
 	
 	<%
@@ -30,6 +32,6 @@
 <br>
 <a href="signup.jsp">sign up
 <br>
-<a href="movieupload.jsp">Movie Upload
+
 </body>
 </html>

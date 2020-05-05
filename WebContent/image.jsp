@@ -31,7 +31,7 @@ for(String l : idList){
 	}
 //out.print("   <td><img src='./DisplayImage?imgid="+l+"' width='400px' heigh=400px'/></td>  ");
 //out.print("&emsp;<td><tr><td><figure><img src='./DisplayImage?imgid="+l+"' width='400px' heigh='400px'/><figcaption><a href='movieSelect.jsp?mName="+l+"'></figcaption></figure></td></tr><tr><td><a href='movieSelect.jsp?mid="+l+"'>"+l+"</td></tr></td>");
-out.print("&emsp;&emsp;<td><figure><img src='./DisplayImage?imgid="+l+"' width='300px' heigh='300px'/><figcaption><br><a href='movieSelect.jsp?mName="+l+"'>"+l+"</figcaption></figure></td>");
+out.print("&emsp;&emsp;<td><figure><img src='./DisplayImage?imgid="+l+"' width='300px' height='450px'/><figcaption><br><a href='movieSelect.jsp?mName="+l+"'>"+l+"</figcaption></figure></td>");
 line++;
 }
 out.print("</tr></table>");

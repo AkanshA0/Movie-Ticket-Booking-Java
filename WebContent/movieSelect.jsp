@@ -20,8 +20,8 @@ div {
 <body>
 
 <%
-	response.setHeader("Cache-Control","no-chache,no-store,must-revalidate");
-	if(session.getAttribute("username")==null){
+	//response.setHeader("Cache-Control","no-chache,no-store,must-revalidate");
+	if(session.getAttribute("username")==null || request.getParameter("mName")==null){
 		
 		response.sendRedirect("login.jsp");
 	}
@@ -40,7 +40,7 @@ div {
 MysqlLogin objmysql=new MysqlLogin();
 List<String> reservedSeatsList=objmysql.getBookedSeats(session.getAttribute("username").toString(),movieName);
 out.print("<div style='float:left;'>");
-out.print("&emsp;&emsp;&emsp;<img src='./DisplayImage?imgid="+movieName+"' width='250px' heigh='250px'/>");
+out.print("&emsp;&emsp;&emsp;<img src='./DisplayImage?imgid="+movieName+"' width='250px' height='400px'/>");
 //out.print("<div style='float:right;'>");
 out.print("<h2>&emsp;&emsp;"+movieName+"</h2>");
 out.print("&emsp;&emsp;&emsp;"+objmysql.getMovieDesc(movieName)+"</div>");
@@ -126,7 +126,7 @@ out.print("</table>");
 <h3>Amount Payable : ${totalCost}</h3>
 <% 
 out.print("<form action='./bookTicket?mname="+movieName+"&nos="+request.getAttribute("numberOfSeats")+"&cost="+request.getAttribute("totalCost")+"&seatsSelected="+request.getAttribute("seatNumber")+"' method='post'>");
-out.print("<h3>Date : <input type='text' required='required'/><p>");
+out.print("<h3>Date : <input type='text' name='date' required='required'/><p>");
 out.print("<input type='submit' value='Book Ticket'/>");
 out.print("</form>");
 %>
