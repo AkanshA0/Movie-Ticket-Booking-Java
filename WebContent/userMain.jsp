@@ -6,6 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>movies</title>
 </head>
+<%@ include file = "user_header.jsp" %>
 <body>
 
 <%
@@ -15,14 +16,13 @@
 		response.sendRedirect("login.jsp");
 	}
 %>
-    Welcome ${username}
-    
-    <form action="LogoutServlet">
+<p>
+<p>
+   <h2 style='color:black'>Welcome  ${username}</h2>
+    <p>
+    <!--  form action="LogoutServlet">
 	<input type="submit" value="Logout">
-	</form>
+	</form-->
 	
-	<a href="image.jsp">movies
-	<br>
-	<a href="mybookings.jsp">my bookings
 </body>
 </html>

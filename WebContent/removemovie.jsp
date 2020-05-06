@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>remove movie</title>
 </head>
 <body>
 <%
@@ -16,7 +16,10 @@ if(session.getAttribute("adminname")==null){
 	
 	
 %>
+<%@ include file = "admin_header.jsp" %>
+
 <%@ page import="com.mainpkg.MysqlLogin"%>
+<p>
 <h2>Click on Movie to remove it</h2>
 <p>
 <h3>
@@ -29,8 +32,8 @@ myLoginObj.rs=(myLoginObj.pstmt).executeQuery();
 if(myLoginObj.rs.first())
 {
 do{
-	out.print("<a href='./removeMovie?mname="+myLoginObj.rs.getString(1)+"'>"+myLoginObj.rs.getString(1));
-	out.print("<br>");
+	out.print("<a href='./removeMovie?mname="+myLoginObj.rs.getString(1)+"' style='color:#ff6a00'>"+myLoginObj.rs.getString(1));
+	out.print("<br><br>");
 }while(myLoginObj.rs.next());	
 }
 

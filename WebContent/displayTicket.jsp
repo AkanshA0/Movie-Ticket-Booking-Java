@@ -16,6 +16,10 @@
 	
 	
 %>
+<%@ include file = "user_header.jsp" %>
+<br>
+
+<br>
 <% 
 //String uname=session.getAttribute("username").toString();
 int tno=Integer.parseInt(request.getParameter("Tno"));

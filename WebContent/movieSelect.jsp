@@ -3,11 +3,29 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <style>
-div {
-  padding-top: 20px;
+d {
+  padding-top: 10px;
   padding-right: 80px;
-  padding-bottom: 50px;
+  padding-bottom: 10px;
   padding-left: 20px;
+
+  
+}
+div {
+  padding-top: 5px;
+  padding-right: 100px;
+  padding-bottom: 50px;
+  padding-left: 100px;
+  
+  
+}
+pg {
+  
+  padding-right: 400px;
+  padding-bottom: 0px;
+    padding-top: 0px;
+  padding-left: 0px;
+   
  
   
 }
@@ -16,7 +34,7 @@ div {
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>book</title>
 </head>
-<h1 align="center"> Select Seats</h1><p>
+
 <body>
 
 <%
@@ -28,6 +46,9 @@ div {
 	
 	
 %>
+<%@ include file = "user_header.jsp" %>
+
+
 <%@ page import="java.util.List,java.util.ArrayList,com.mainpkg.MysqlLogin"%>
 
 <%
@@ -39,11 +60,11 @@ div {
 
 MysqlLogin objmysql=new MysqlLogin();
 List<String> reservedSeatsList=objmysql.getBookedSeats(session.getAttribute("username").toString(),movieName);
-out.print("<div style='float:left;'>");
-out.print("&emsp;&emsp;&emsp;<img src='./DisplayImage?imgid="+movieName+"' width='250px' height='400px'/>");
-//out.print("<div style='float:right;'>");
-out.print("<h2>&emsp;&emsp;"+movieName+"</h2>");
-out.print("&emsp;&emsp;&emsp;"+objmysql.getMovieDesc(movieName)+"</div>");
+out.print("<d style='float:left;'>");
+out.print("&emsp;&emsp;&emsp;<img src='./DisplayImage?imgid="+movieName+"' width='250px' height='400px'/></d>");
+//out.print("<div style='float:center;'>");
+out.print("<div><h2 align='center'>"+movieName+"</h2>");
+out.print("<h5 align='center'>"+objmysql.getMovieDesc(movieName)+"</h5><p>");
 
 double movieCost=objmysql.getMovieCost(movieName);
 
@@ -67,29 +88,31 @@ else{
 }
 %>
 
-<style>
-pg {
-  
-  padding-right: 80px;
-  padding-bottom: 100px;
-    padding-top: 70px;
-  padding-left: 80px;
-   border: 1px solid black;
-  background-color: lightblue;
-  
-}
-</style>
+<h3 align='center'>Number of seats : ${numberOfSeats}</h3>
+<h3 align='center'>Selected Seats : ${seatNumber}</h3>
+<h3 align='center'>Amount Payable : ${totalCost}</h3>
+<% 
+//out.print("<h3>Number of seats : "+request.getAttribute("numberOfSeats")+"</h3>");
+out.print("<form action='./bookTicket?mname="+movieName+"&nos="+request.getAttribute("numberOfSeats")+"&cost="+request.getAttribute("totalCost")+"&seatsSelected="+request.getAttribute("seatNumber")+"' method='post'>");
+out.print("<h3 align='center'>Date : <input type='text' name='date' required='required'/><p>");
+out.print("<input type='submit' value='Book Ticket'/>");
+out.print("</form></div>");
+%>
+
+
+
+
 <% 
 //List<String> l=new ArrayList<String>();
 //l.add("1");
 //l.add("2");
 //out.print("<div align='left' style='vertical-align:bottom'>");
-out.print("<br style = 'line-height:10;'><pg style='float:right;'>");
+out.print("<pg style='float:right;'>");
 out.print("<table >");
 int seatNo=1;
-for(int i=0;i<5;i++){
+for(int i=0;i<6;i++){
 	out.print("<tr>");
-	for(int j=0;j<7;j++){
+	for(int j=0;j<10;j++){
 		out.print("<td>");
 		if(reservedSeatsList.contains(seatNo+"") || seatList.contains(seatNo+"")){
 			out.print("<button type='submit' disabled='disabled'><img src='E:/luna java EE workspace/JavaProject/WebContent/images/seat1.jpg' width='40px' heigh='40px' id='dagger'/></button>");
@@ -121,14 +144,12 @@ out.print("</table>");
 //}
 %>
 <!--div style="float:left;"-->
-<h3>Number of seats : ${numberOfSeats}</h3>
-<h3>Selected Seats : ${seatNumber}</h3>
-<h3>Amount Payable : ${totalCost}</h3>
+
 <% 
-out.print("<form action='./bookTicket?mname="+movieName+"&nos="+request.getAttribute("numberOfSeats")+"&cost="+request.getAttribute("totalCost")+"&seatsSelected="+request.getAttribute("seatNumber")+"' method='post'>");
-out.print("<h3>Date : <input type='text' name='date' required='required'/><p>");
-out.print("<input type='submit' value='Book Ticket'/>");
-out.print("</form>");
+//out.print("<form action='./bookTicket?mname="+movieName+"&nos="+request.getAttribute("numberOfSeats")+"&cost="+request.getAttribute("totalCost")+"&seatsSelected="+request.getAttribute("seatNumber")+"' method='post'>");
+//out.print("<h3>Date : <input type='text' name='date' required='required'/><p>");
+//out.print("<input type='submit' value='Book Ticket'/>");
+//out.print("</form>");
 %>
 </pg>
 <!--/div-->

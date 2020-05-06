@@ -9,7 +9,7 @@
 </head>
 <body>
 
-<h1> &emsp;&emsp;Select  Movie</h1><p>
+
 <%
 	response.setHeader("Cache-Control","no-chache,no-store,must-revalidate");
 	if(session.getAttribute("username")==null){
@@ -18,6 +18,10 @@
 	}
 	
 %>
+<%@ include file = "user_header.jsp" %>
+<h1> &emsp;&emsp;Select  Movie</h1><p>
+<br>
+
 <%@ page import="com.mainpkg.MysqlLogin,java.util.List"%>
 <% 
 MysqlLogin myLoginObj=new MysqlLogin();

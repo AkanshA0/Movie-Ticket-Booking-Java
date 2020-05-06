@@ -10,18 +10,18 @@ if(session.getAttribute("adminname")==null){
 	response.sendRedirect("login.jsp");
 }
 %>
+
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>admin</title>
 </head>
-Welcome ${adminname}
+<%@ include file = "admin_header.jsp" %>
 <p>
-<a href="movieupload.jsp"/>Movie Upload
 <p>
-<a href="removemovie.jsp"/>Movie Remove
-<p>
-<form action="LogoutServlet?type=admin" method="post">
+<h2 style='color:black'>Welcome  ${adminname}</h2>
+
+<!--  form action="LogoutServlet?type=admin" method="post">
 	<input type="submit" value="Logout">
-	</form>
+	</form -->
 <body>
 
 </body>
