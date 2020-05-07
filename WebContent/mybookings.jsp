@@ -32,7 +32,7 @@ myLoginObj.rs=(myLoginObj.pstmt).executeQuery();
 if(myLoginObj.rs.first())
 {
 do{
-	out.print("&emsp;&emsp;<a href='displayTicket.jsp?Tno="+myLoginObj.rs.getInt(1)+"&MovieName="+myLoginObj.rs.getString(3)+"&numberOfSeats="+myLoginObj.rs.getInt(4)+"&cost="+myLoginObj.rs.getDouble(5)+"&date="+myLoginObj.rs.getString(6)+"' style='color:#ff6a00'>"+myLoginObj.rs.getString(3)+"&emsp;("+myLoginObj.rs.getString(6)+")</a>");
+	out.print("&emsp;&emsp;&emsp;&emsp;<a href='displayTicket.jsp?Tno="+myLoginObj.rs.getInt(1)+"&MovieName="+myLoginObj.rs.getString(3)+"&numberOfSeats="+myLoginObj.rs.getInt(4)+"&cost="+myLoginObj.rs.getDouble(5)+"&date="+myLoginObj.rs.getString(6)+"' style='color:#ff6a00'>"+myLoginObj.rs.getString(3)+" ("+myLoginObj.rs.getString(6)+")</a>");
 	out.print("<br><br>");
 }while(myLoginObj.rs.next());	
 }

@@ -114,13 +114,13 @@ public class MysqlLogin {
 		 return list;
 	 }
 	 
-	 public List<String> getBookedSeats(String uName,String movieName){
+	 public List<String> getBookedSeats(String movieName){
 		 List<String> list = new ArrayList<String>();  
 		 
 		 try{
-			 pstmt=con.prepareStatement("select SeatNo from booked where uname=? and MovieName=?");
-			 pstmt.setString(1, uName);
-			 pstmt.setString(2, movieName);
+			 pstmt=con.prepareStatement("select SeatNo from booked where MovieName=?");
+			
+			 pstmt.setString(1, movieName);
 			 rs=pstmt.executeQuery();
 			 if (rs.first()){
 				do{

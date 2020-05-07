@@ -59,7 +59,7 @@ pg {
 
 
 MysqlLogin objmysql=new MysqlLogin();
-List<String> reservedSeatsList=objmysql.getBookedSeats(session.getAttribute("username").toString(),movieName);
+List<String> reservedSeatsList=objmysql.getBookedSeats(movieName);
 out.print("<d style='float:left;'>");
 out.print("&emsp;&emsp;&emsp;<img src='./DisplayImage?imgid="+movieName+"' width='250px' height='400px'/></d>");
 //out.print("<div style='float:center;'>");

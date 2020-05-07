@@ -19,9 +19,10 @@ if(session.getAttribute("adminname")==null){
 <%@ include file = "admin_header.jsp" %>
 
 <%@ page import="com.mainpkg.MysqlLogin"%>
-<p>
-<h2>Click on Movie to remove it</h2>
-<p>
+<br>
+<br>
+<h2>&emsp;&emsp;&emsp;Click on Movie to remove it</h2>
+<br>
 <h3>
 <% 
 MysqlLogin myLoginObj=new MysqlLogin();
@@ -32,7 +33,7 @@ myLoginObj.rs=(myLoginObj.pstmt).executeQuery();
 if(myLoginObj.rs.first())
 {
 do{
-	out.print("<a href='./removeMovie?mname="+myLoginObj.rs.getString(1)+"' style='color:#ff6a00'>"+myLoginObj.rs.getString(1));
+	out.print("&emsp;&emsp;&emsp;&emsp;<a href='./removeMovie?mname="+myLoginObj.rs.getString(1)+"' style='color:#ff6a00'>"+myLoginObj.rs.getString(1)+"</a>");
 	out.print("<br><br>");
 }while(myLoginObj.rs.next());	
 }
