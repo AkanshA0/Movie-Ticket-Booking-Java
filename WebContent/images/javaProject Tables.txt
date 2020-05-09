@@ -1,11 +1,12 @@
 create table users(uname varchar(30) primary key,password varchar(10));
+
 create table admins(uname varchar(30) primary key,password varchar(10),fullname varchar(30));
 
 create table movies(MovieName varchar(40) primary key, image longblob,cost decimal(4),description varchar(300));
 
 create table booked(SeatNo varchar(4),MovieName varchar(40),uname varchar(30),primary key(SeatNo,MovieName),Tno int(5), foreign key(Tno) references tickets(Tno),foreign key(uname) references users(uname),foreign key(MovieName) references movies(MovieName));
 
-select SeatNo from booked where MovieNmae="" and uname="";		//to disable seats button
+select SeatNo from booked where MovieNmae="";		//to disable seats button
 
 create table tickets(Tno int(5) primary key,uname varchar(40),MovieName varchar(40),numberOfSeats int(3),cost decimal(5),date varchar(10),foreign key(uname) references users(uname));
 
